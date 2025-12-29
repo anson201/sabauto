@@ -492,62 +492,6 @@ pcall(function()
     end
 end)
 
--- Disable Christmas Spin Wheel
-task.spawn(function()
-    task.wait(0.5)
-
-    pcall(function()
-        -- Destroy spin wheel objects in workspace
-        for _, obj in ipairs(Workspace:GetDescendants()) do
-            local name = obj.Name:lower()
-            if name:find("christmas") and (name:find("wheel") or name:find("spin")) then
-                obj:Destroy()
-            end
-        end
-    end)
-
-    -- Hook the ChristmasSpinWheel controller
-    pcall(function()
-        local controllers = ReplicatedStorage:FindFirstChild("Controllers")
-        if controllers then
-            local wheelController = controllers:FindFirstChild("ChristmasSpinWheel")
-            if wheelController then
-                local ok, mod = pcall(function()
-                    return originalRequire(wheelController)
-                end)
-
-                if ok and type(mod) == "table" then
-                    -- Disable all functions
-                    mod.new = function() return {Destroy = function() end} end
-                    mod.Destroy = function() end
-
-                    -- Disable the constructor
-                    if mod.__index then
-                        for key, value in pairs(mod.__index) do
-                            if type(value) == "function" then
-                                mod.__index[key] = function() end
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end)
-
-    -- Prevent future spin wheel spawns
-    Workspace.ChildAdded:Connect(function(child)
-        task.spawn(function()
-            pcall(function()
-                local name = child.Name:lower()
-                if name:find("christmas") and (name:find("wheel") or name:find("spin")) then
-                    child:Destroy()
-                end
-            end)
-        end)
-    end)
-
-    print("[Optimization] Christmas Spin Wheel disabled")
-end)
 
 
 -- FPS Limiter - Set to 6 FPS every 5 seconds
@@ -561,7 +505,6 @@ task.spawn(function()
     end
 end)
 
-print("[Optimization] FPS limiter loop started")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/super-boost-fps/sucvat/main/ditfps-bf.lua"))()
 
 
