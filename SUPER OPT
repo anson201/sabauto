@@ -1,3 +1,4 @@
+task.wait(10)
 print("beginning")
 
 pcall(function()
