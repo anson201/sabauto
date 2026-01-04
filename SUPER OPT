@@ -1,4 +1,3 @@
-task.wait(10)
 print("beginning")
 
 pcall(function()
@@ -23,12 +22,6 @@ if not lp then
     warn("LocalPlayer not found!")
     return
 end
-
--- Disable 3D Rendering
-pcall(function()
-    RunService:Set3dRenderingEnabled(false)
-    print("[Optimization] 3D Rendering disabled")
-end)
 
 
 local randomDelay = math.random(0, 200) / 100
@@ -69,6 +62,13 @@ task.spawn(function()
             end
         end)
     end
+
+    
+-- Disable 3D Rendering
+    pcall(function()
+        RunService:Set3dRenderingEnabled(false)
+        print("[Optimization] 3D Rendering disabled")
+    end)
 
     for _, obj in ipairs(Workspace:GetDescendants()) do
         pcall(function()
@@ -150,6 +150,64 @@ task.spawn(function()
         deleteObj(Workspace, name)
     end
 
+    -- Delete everything in workspace > Map > GenerationBoard
+    pcall(function()
+        local map = Workspace:FindFirstChild("Map")
+        if map then
+            local generationBoard = map:FindFirstChild("GenerationBoard")
+            if generationBoard then
+                generationBoard:ClearAllChildren()
+            end
+        end
+    end)
+
+    pcall(function()
+        local map = Workspace:FindFirstChild("Map")
+        if map then
+            local stealsBoard = map:FindFirstChild("StealsBoard")
+            if stealsBoard then
+                stealsBoard:ClearAllChildren()
+            end
+        end
+    end)
+        pcall(function()
+        local map = Workspace:FindFirstChild("Map")
+        if map then
+            local Collisioons = map:FindFirstChild("Collisions")
+            if Collisioons then
+                Collisioons:ClearAllChildren()
+            end
+        end
+    end)
+
+        pcall(function()
+        local map = Workspace:FindFirstChild("Map")
+        if map then
+            local Codes = map:FindFirstChild("Codes")
+            if Codes then
+                Codes:ClearAllChildren()
+            end
+        end
+    end)
+        pcall(function()
+        local map = Workspace:FindFirstChild("Map")
+        if map then
+            local model1 = map:FindFirstChild("Model1")
+            if model1 then
+                model1:ClearAllChildren()
+            end
+        end
+    end)
+        pcall(function()
+        local map = Workspace:FindFirstChild("Map")
+        if map then
+            local Model = map:FindFirstChild("Model")
+            if Model then
+                Model:ClearAllChildren()
+            end
+        end
+    end)
+
     clearFolder(ReplicatedStorage, "Sounds")
     clearFolder(ReplicatedStorage, "Vfx")
 
@@ -166,7 +224,6 @@ task.spawn(function()
     end)
 end)
 
--- Disable core GUI and camera effects
 task.spawn(function()
     task.wait(0.5)
 
@@ -491,8 +548,6 @@ pcall(function()
         end
     end
 end)
-
-
 
 -- FPS Limiter - Set to 6 FPS every 5 seconds
 task.spawn(function()
