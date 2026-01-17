@@ -14,6 +14,7 @@ getgenv().Config = {
 
     ["Misc"] = {
         ["Kick if FPS below"] = 1,
+        ["Kick if Ping above"] = 100000,
 
         ["Ignore Secret"] = {
             ["La Vacca Saturno Saturnita"] = { "All" },
@@ -86,6 +87,7 @@ getgenv().Config = {
             ["Tung Tung Tung Sahur"] = { "All" },
             ["Vulturino Skeletono"] = { "All" },
             ["Yess my examine"] = { "All" },
+            ["GOAT"] = { "All" },
         },
 
         ["Auto Fuse"] = {
