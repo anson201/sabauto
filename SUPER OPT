@@ -28,48 +28,22 @@ end
 local randomDelay = math.random(0, 200) / 100
 task.wait(randomDelay)
 
--- Remove event-like objects and VFX in workspace
-task.spawn(function()
-    task.wait(0.2)
-
-    pcall(function()
-        local eventsFolder = Workspace:FindFirstChild("Events")
-        if eventsFolder then
-            eventsFolder:Destroy()
-        end
-    end)
-
-    for _, obj in ipairs(Workspace:GetDescendants()) do
-        pcall(function()
-            local name = obj.Name:lower()
-            if name:find("event") or name:find("stage") or name:find("ufo") or
-               name:find("meteor") or name:find("shark") or name:find("cave") or
-               name:find("bloodmoon") or name:find("candy") or name:find("molten") or
-               name:find("nyan") or name:find("radioactive") or name:find("rainbow") then
-                obj:Destroy()
-            end
-        end)
-    end
-
-    for _, tag in ipairs(CollectionService:GetAllTags()) do
-        pcall(function()
-            local tlower = tag:lower()
-            if tlower:find("event") or tlower:find("galaxy") or
-               tlower:find("trick") or tlower:find("witching") or
-               tlower:find("water") or tlower:find("sammyni") then
-                for _, obj in ipairs(CollectionService:GetTagged(tag)) do
-                    pcall(function() obj:Destroy() end)
-                end
-            end
-        end)
-    end
-
-    
 -- Disable 3D Rendering
     pcall(function()
         RunService:Set3dRenderingEnabled(false)
         print("[Optimization] 3D Rendering disabled")
     end)
+
+-- FPS Limiter - Set to 6 FPS every 5 seconds
+task.spawn(function()
+    while true do
+        pcall(function()
+            settings().Rendering.FrameRateManager = Enum.FramerateManagerMode.Automatic
+            setfpscap(5)
+        end)
+        task.wait(5)
+    end
+end)
 
     for _, obj in ipairs(Workspace:GetDescendants()) do
         pcall(function()
@@ -79,7 +53,6 @@ task.spawn(function()
             end
         end)
     end
-end)
 
 -- Lighting & graphics cleanup
 pcall(function()
@@ -147,7 +120,7 @@ task.spawn(function()
         end)
     end
 
-    for _, name in ipairs({"RoadPanel", "Shop", "RobuxShop", "Sounds", "WrappedMachine", "EventBoard", "BrainrotTrader", "AdminBoard", "AdventCalendar", "ShopNPCRobuxIdle"}) do
+    for _, name in ipairs({"RoadPanel", "Shop", "RobuxShop", "Sounds", "WrappedMachine", "EventBoard", "BrainrotTrader", "AdminBoard", "AdventCalendar", "ShopNPCRobuxIdle","CraftingMachine", "DuelsMachine", "FuseMachine","Merchant", "NewYearsMachine"}) do
         deleteObj(Workspace, name)
     end
 
@@ -315,43 +288,6 @@ Lighting.ChildAdded:Connect(function(child)
     task.spawn(function()
         pcall(function()
             if not child:IsA("Script") and not child:IsA("LocalScript") and not child:IsA("ModuleScript") then
-                child:Destroy()
-                lastEventCleanup = tick()
-            end
-        end)
-    end)
-end)
-
--- Workspace child added: remove event-like objects
-Workspace.ChildAdded:Connect(function(child)
-    if tick() - lastEventCleanup < eventCleanupCooldown then return end
-    task.spawn(function()
-        pcall(function()
-            local name = child.Name:lower()
-
-            local eventKeywords = {
-                "event", "stage", "cave", "web", "bush", "crater", "meteor",
-                "ufo", "shark", "tung", "sammyni", "pumpkin", "cannon", "orb",
-                "lightning", "star", "confetti", "firework", "celebration",
-                "weather", "vfx", "effect", "burst", "explosion", "particle",
-                "beam", "trail", "emit", "glow", "flash", "sparkle",
-                "bloodmoon", "candy", "molten", "nyan", "radioactive", "rainbow",
-                "solar", "flare", "starfall", "strawberry", "trick", "treat",
-                "witching", "yin", "yang", "water", "snow", "glitch", "extinct",
-                "rap", "concert", "sammy", "mygame", "orcalero", "tralalero"
-            }
-
-            for _, keyword in ipairs(eventKeywords) do
-                if name:find(keyword) then
-                    child:Destroy()
-                    lastEventCleanup = tick()
-                    return
-                end
-            end
-
-            if child:FindFirstChildOfClass("ParticleEmitter", true) or
-               child:FindFirstChildOfClass("Beam", true) or
-               child:FindFirstChildOfClass("Trail", true) then
                 child:Destroy()
                 lastEventCleanup = tick()
             end
@@ -549,18 +485,6 @@ pcall(function()
         end
     end
 end)
-
--- FPS Limiter - Set to 6 FPS every 5 seconds
-task.spawn(function()
-    while true do
-        pcall(function()
-            settings().Rendering.FrameRateManager = Enum.FramerateManagerMode.Automatic
-            setfpscap(5)
-        end)
-        task.wait(5)
-    end
-end)
-
 loadstring(game:HttpGet("https://raw.githubusercontent.com/super-boost-fps/sucvat/main/ditfps-bf.lua"))()
 
 
