@@ -1,218 +1,103 @@
-getgenv().Key = "ka3689d7119202d2cc376f79"
-
-getgenv().Config = {
-    ["Gameplay"] = {
-        ["Server Type"] = "Private (Clone)",
-
-        -- Private Server config
-        ["Collect Cash Cap"] = "500B",
-
-        -- Public Server config
-        ["Max Auctioning Multiplier"] = 10,
-        ["Lock Base Extra Time"] = 5,
+getgenv().Settings = {
+    FPS_CAP = 5,
+    STARTER = true,
+    STARTER_UPGRADES = {
+        ["Hatch Speed"] = true,
+        ["Click Multiplier"] = true,
+        ["Critical Chance"] = true,
+        ["Golden Luck"] = true,
     },
+    EGG_TO_GRIND_TO = "Lightning Event",
+    REQUIRE_STARTER_UPGRADES = true,
 
-    ["Misc"] = {
-        ["Kick if FPS below"] = 1,
-        ["Kick if Ping above"] = 100000,
+    AUTO_CLICK = true,
+    UNLOCK_ALL_ISLANDS = true,
+    EQUIP_BEST_PETS = true,
+    IGNORE_SECRET_WHEN_EQUIPPING = false,
+    AUTO_BUY_SPACE_WORLD = true,
 
-        ["Ignore Secret"] = {
-            ["La Vacca Saturno Saturnita"] = { "All" },
-            ["Karkerkar Kurkur"] = { "All" },
-            ["Sammyni Spyderini"] = { "All" },
-            ["Extinct Tralalero"] = { "All" },
-            ["Extinct Matteo"] = { "All" },
-            ["Dul Dul Dul"] = { "All" },
-            ["Chachechi"] = { "All" },
-            ["Los Tralaleritos"] = { "All" },
-            ["Las Tralaleritas"] = { "All" },
-            ["La Cucaracha"] = { "All" },
-            ["Job Job Job Sahur"] = { "All" },
-            ["Frankentteo"] = { "All" },
-            ["Graipuss Medussi"] = { "All" },
-            ["Zombie Tralala"] = { "All" },
-            ["Perrito Burrito"] = { "All" },
-            ["To to to Sahur"] = { "All" },
-            ["Guerriro Digitale"] = { "All" },
-            ["Coffin Tung Tung Tung Sahur"] = { "All" },
-            ["Nooo My Hotspot"] = { "All" },
-            ["La Grande Combinasion"] = { "All" },
-            ["Chicleteira Bicicleteira"] = { "All" },
-            ["Chimnino"] = { "All" },
-            ["Bunnyman"] = { "All" },
-            ["Please my Present"] = { "All" },
-            ["Reindeer Tralala"] = { "All" },
-            ["La Vacca Prese Presente"] = { "All" },
-            ["Ho Ho Ho Sahur"] = { "All" },
-            ["List List List Sahur"] = { "All" },
-            ["Bisonte Giuppitere"] = { "All" },
-            ["Blackhole Goat"] = { "All" },
-            ["Chicleteirina Bicicleteirina"] = { "All" },
-            ["Chimpanzini Spiderini"] = { "All" },
-            ["Cuadramat and Pakrahmatmamat"] = { "All" },
-            ["Donkeyturbo Express"] = { "All" },
-            ["Giftini Spyderini"] = { "All" },
-            ["Horegini Boom"] = { "All" },
-            ["Jackorilla"] = { "All" },
-            ["Jolly Jolly Sahur"] = { "All" },
-            ["Karker Sahur"] = { "All" },
-            ["La Vacca Jacko Linterino"] = { "All" },
-            ["Los Chicleteiras"] = { "All" },
-            ["Los Cucarachas"] = { "All" },
-            ["Los Hotspotsitos"] = { "All" },
-            ["Los Jobcitos"] = { "All" },
-            ["Los Karkeritos"] = { "All" },
-            ["Los Matteos"] = { "All" },
-            ["Los Mobilis"] = { "All" },
-            ["Los Nooo My Hotspotsitos"] = { "All" },
-            ["Los Planitos"] = { "All" },
-            ["Los Quesadillas"] = { "All" },
-            ["Los Spyderinis"] = { "All" },
-            ["Los Tortus"] = { "All" },
-            ["Naughty Naughty"] = { "All" },
-            ["Noo my Candy"] = { "All" },
-            ["Noo my examine"] = { "All" },
-            ["Noo my Present"] = { "All" },
-            ["Pirulitoita Bicicleteira"] = { "All" },
-            ["Pot Hotspot"] = { "All" },
-            ["Pot Pumpkin"] = { "All" },
-            ["Pumpkini Spyderini"] = { "All" },
-            ["Quesadilla Crocodila"] = { "All" },
-            ["Rang Ring Bus"] = { "All" },
-            ["Santteo"] = { "All" },
-            ["Santa Hotspot"] = { "All" },
-            ["Torrtuginni Dragonfrutini"] = { "All" },
-            ["Trickolino"] = { "All" },
-            ["Triplito Tralaleritos"] = { "All" },
-            ["Tung Tung Tung Sahur"] = { "All" },
-            ["Vulturino Skeletono"] = { "All" },
-            ["Yess my examine"] = { "All" },
-            ["GOAT"] = { "All" },
-            ["Brunito Marsito"] = {"All},
-            ["Chill Puppy"] = {"All},
-            ["Los Trios"] = {"All},
-        },
+    EGG_TO_HATCH = "Lightning Event",
+    AMOUNT_TO_HATCH = nil,
 
-        ["Auto Fuse"] = {
-            ["Enable"] = true,
-            ["Fuse Animal"] = {
-                ["La Vacca Saturno Saturnita"] = { "All" },
-                ["Karkerkar Kurkur"] = { "All" },
-                ["Sammyni Spyderini"] = { "All" },
-                ["Extinct Tralalero"] = { "All" },
-                ["Extinct Matteo"] = { "All" },
-                ["Dul Dul Dul"] = { "All" },
-                ["Chachechi"] = { "All" },
-                ["Los Tralaleritos"] = { "All" },
-                ["Las Tralaleritas"] = { "All" },
-                ["La Cucaracha"] = { "All" },
-                ["Job Job Job Sahur"] = { "All" },
-                ["Frankentteo"] = { "All" },
-                ["Graipuss Medussi"] = { "All" },
-                ["Zombie Tralala"] = { "All" },
-                ["Perrito Burrito"] = { "All" },
-                ["To to to Sahur"] = { "All" },
-                ["Guerriro Digitale"] = { "All" },
-                ["Coffin Tung Tung Tung Sahur"] = { "All" },
-                ["Nooo My Hotspot"] = { "All" },
-                ["La Grande Combinasion"] = { "All" },
-                ["Chicleteira Bicicleteira"] = { "All" },
-                ["Chimnino"] = { "All" },
-                ["Bunnyman"] = { "All" },
-                ["Please my Present"] = { "All" },
-                ["Reindeer Tralala"] = { "All" },
-                ["La Vacca Prese Presente"] = { "All" },
-                ["Ho Ho Ho Sahur"] = { "All" },
-                ["List List List Sahur"] = { "All" },
-                ["Bisonte Giuppitere"] = { "All" },
-                ["Blackhole Goat"] = { "All" },
-                ["Chicleteirina Bicicleteirina"] = { "All" },
-                ["Chimpanzini Spiderini"] = { "All" },
-                ["Cuadramat and Pakrahmatmamat"] = { "All" },
-                ["Donkeyturbo Express"] = { "All" },
-                ["Giftini Spyderini"] = { "All" },
-                ["Horegini Boom"] = { "All" },
-                ["Jackorilla"] = { "All" },
-                ["Jolly Jolly Sahur"] = { "All" },
-                ["Karker Sahur"] = { "All" },
-                ["La Vacca Jacko Linterino"] = { "All" },
-                ["Los Chicleteiras"] = { "All" },
-                ["Los Cucarachas"] = { "All" },
-                ["Los Hotspotsitos"] = { "All" },
-                ["Los Jobcitos"] = { "All" },
-                ["Los Karkeritos"] = { "All" },
-                ["Los Matteos"] = { "All" },
-                ["Los Mobilis"] = { "All" },
-                ["Los Nooo My Hotspotsitos"] = { "All" },
-                ["Los Planitos"] = { "All" },
-                ["Los Quesadillas"] = { "All" },
-                ["Los Spyderinis"] = { "All" },
-                ["Los Tortus"] = { "All" },
-                ["Naughty Naughty"] = { "All" },
-                ["Noo my Candy"] = { "All" },
-                ["Noo my examine"] = { "All" },
-                ["Noo my Present"] = { "All" },
-                ["Pirulitoita Bicicleteira"] = { "All" },
-                ["Pot Hotspot"] = { "All" },
-                ["Pot Pumpkin"] = { "All" },
-                ["Pumpkini Spyderini"] = { "All" },
-                ["Quesadilla Crocodila"] = { "All" },
-                ["Rang Ring Bus"] = { "All" },
-                ["Santteo"] = { "All" },
-                ["Santa Hotspot"] = { "All" },
-                ["Torrtuginni Dragonfrutini"] = { "All" },
-                ["Trickolino"] = { "All" },
-                ["Triplito Tralaleritos"] = { "All" },
-                ["Tung Tung Tung Sahur"] = { "All" },
-                ["Vulturino Skeletono"] = { "All" },
-                ["Yess my examine"] = { "All" },
-                ["GOAT"] = { "All" },
-                ["Brunito Marsito"] = {"All},
-                ["Chill Puppy"] = {"All},
-                ["Los Trios"] = {"All},
-            },
-        },
+    PETS_TO_DELETE = {},
+    RARITYS_TO_DELETE = {"Common", "Rare", "Epic", "Legendary", "Mythical"},
+    DELETE_ALL_EXCEPT = {"Lightning Wyvern", "Surge Dragon", "Dual Shock", "Overcharged Robot"},
+    DELETE_PETS_BELOW_POWER = 0,
+    USE_INGAME_AUTODELETE = true,
+    AUTO_CRAFT_GOLDEN = {
+        "Sparky", "Charged Dino", "Electric Slime", "Tesla Bot", "Electrical Glitch"},
+    GAMOUNT_TO_CRAFT = 6,
+    DELETE_CRAFTED_PETS = true,
+    AUTO_CRAFT_ANY_PET = false,
 
-        ["Rare Animal Generation"] = "20M",
+    AUTO_CRAFT_RAINBOW = {"Sparky", "Charged Dino", "Electric Slime", "Tesla Bot", "Electrical Glitch"},
+    RAMOUNT_TO_CRAFT = 5,
 
-        ["Open Lucky Block"] = {
-            "Spooky Lucky Block",
-            "Festive Lucky Block",
-            "Spooky Lucky Block",
-        },
+     AUTO_CRAFT_ELECTRIC = {},
+     EAMOUNT_TO_CRAFT = 3,
 
-        ["Buy Lucky Block"] = {
-            "Secret Lucky Block",
-            "Festive Lucky Block",
-            "Spooky Lucky Block",
-        },
+    AUTO_UPGRADES = {"Hatch Speed", "Click Multiplier", "Critical Chance", "Golden Luck"},
+
+    AUTO_BUY_POTIONS = {1, 3, 10},
+    POTIONS_TO_USE = {"Tap Potion I", "Tap Potion II", "Tap Potion III", "Festive Tap I", "Space Tap I", "Rebirth Potion I", "Rebirth Potion II", "Rebirth Potion III", "Space Rebirths I", "Festive Rebirths I", "Space Rebirths II", "Space Rebirths I", "Space Tap II"},
+    AUTO_RANK_REWARDS = true,
+    AUTO_DIG_MINIGAME = false,
+    AUTO_MEMORY_MATCH = false,
+    AUTO_WHEEL_SPIN = true,
+    AUTO_CLAIM_CHESTS = true,
+    AUTO_OPEN_PRESENTS  = true,
+    AUTO_CLAIM_QUESTS = true,
+    AUTO_DO_QUESTS = false,
+    DO_EGG_INDEX = {},
+    CRAFT_FOR_INDEX = false,
+    INDEX_VARIANT_TODO = {},
+    DO_EVENT_EGGS = true,
+    RARITIES_TO_DO = {},
+
+
+    FARM_ENCHANT_SHARDS = true,
+    ONLY_FARM_WHEN_SNOWMAN_ELECTRIFIED = false,
+    FARM_UNTIL_PETS_ENCHANTED = true,
+
+    TARGET_ENCHANTS = {"Secret Hunter"},
+   FALLBACK_ENCHANT = {"Rainbow Hunter", "Golden Hunter"}, -- applies when u have 3 secret hunter pets
+    ENCHANT_WHEN_TEAM_HITS_X_POWER = 0,
+    EQUIP_ONLY_SET_ENCHANT_PET = true,
+
+    AUTO_REBIRTH = true,
+    AUTO_REBIRTH_BUTTONS = true,
+    REBIRTH_INTERVAL = 10,
+    AUTO_FRIEND_ALL = true,
+
+    HATCH_WEBHOOK_URL = "https://discord.com/api/webhooks/1465492909800554661/0Av-O0b9cOjrYTLT_S6xa4LJmwPxFJamoSfniR4SRJwgoSties7lQm94FVgQUR2OBCyK",
+    DISCORD_USER_ID = "1147664930984693840",
+
+    BUY_SELECTED_GAMPASSES_WITH_TOKENS = {
+        "faster hatch",
+        "octo hatch",
+        "magic eggs",
+    "secret hunter",
+},
+
+AUTO_BUY_STELLAR_OVERDRIVE = true,
+
+    HIDE_STATUS_AND_STATS_UI = false,
+
+     MAIN_ACCOUNT = "anson201sellacc",
+     PETS_TO_TRADE = {
+            "Lightning Wyvern",
+            "Surge Dragon",
+            "Dual Shock",
+            "Overcharged Robot"
+     },
+     MAX_SERVER_PLAYERS = 12,
+     TOKENS_TO_TRADE = 1000, 
+     JOB_ID = "",
+
+     DO_TRADE_PLAZA = false,
+     PETS_TO_LIST = {
+         ["pet1"] = 9999,
+         ["pet2"] = 9999
     },
-
-    ["Performance"] = {
-        ["Boost FPS"] = true,
-        ["Black Screen"] = true,
-    },
-
-    ["Webhook"] = {
-        ["Enable"] = true,
-        ["Url"] = "https://discord.com/api/webhooks/1389059477797601412/yKXM6xS8Z1yfQvPdNB1o4b9EMypJl5XK0AMxLxxhCu7WZOUj15vsxtgOIO35nP8uLNij",
-        ["Ignore Notify"] = {},
-    },
+     PREFER_SECRET_PLAZA = false,
 }
-
-spawn(function()
-    task.wait(200)
-    if not getgenv().scriptLoaded then
-        game.Players.LocalPlayer:Kick(
-            "Script load timeout\nKick to prevent animal gets stolen"
-        )
-    end
-end)
-
-repeat
-    task.wait()
-    spawn(function()
-        loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()
-    end)
-    task.wait(20)
-until getgenv().Joebiden
