@@ -56,9 +56,9 @@ getgenv().Settings = {
     RARITIES_TO_DO = {},
 
 
-    FARM_ENCHANT_SHARDS = true,
+    FARM_ENCHANT_SHARDS = false,
     ONLY_FARM_WHEN_SNOWMAN_ELECTRIFIED = false,
-    FARM_UNTIL_PETS_ENCHANTED = true,
+    FARM_UNTIL_PETS_ENCHANTED = false,
 
     TARGET_ENCHANTS = {"Secret Hunter"},
    FALLBACK_ENCHANT = {"Rainbow Hunter", "Golden Hunter"}, -- applies when u have 3 secret hunter pets
