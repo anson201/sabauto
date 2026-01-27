@@ -1,3 +1,4 @@
+script_key="HUYvTPtnjWOVaDECibXMMNMSoEBlKKyQ";
 getgenv().Settings = {
     FPS_CAP = 5,
     STARTER = true,
@@ -101,3 +102,4 @@ AUTO_BUY_STELLAR_OVERDRIVE = true,
     },
      PREFER_SECRET_PLAZA = false,
 }
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fb31413cc755d63e0b152c4bf9428db2.lua"))()
