@@ -73,12 +73,7 @@ getgenv().Settings = {
     HATCH_WEBHOOK_URL = "https://discord.com/api/webhooks/1465492909800554661/0Av-O0b9cOjrYTLT_S6xa4LJmwPxFJamoSfniR4SRJwgoSties7lQm94FVgQUR2OBCyK",
     DISCORD_USER_ID = "1147664930984693840",
 
-    BUY_SELECTED_GAMPASSES_WITH_TOKENS = {
-        "faster hatch",
-        "octo hatch",
-        "magic eggs",
-    "secret hunter",
-},
+    BUY_SELECTED_GAMPASSES_WITH_TOKENS = { "faster hatch", "octo hatch", "magic eggs","secret hunter"},
 
 AUTO_BUY_STELLAR_OVERDRIVE = true,
 
