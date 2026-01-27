@@ -88,10 +88,13 @@ getgenv().Config = {
             ["Vulturino Skeletono"] = { "All" },
             ["Yess my examine"] = { "All" },
             ["GOAT"] = { "All" },
+            ["Brunito Marsito"] = {"All},
+            ["Chill Puppy"] = {"All},
+            ["Los Trios"] = {"All},
         },
 
         ["Auto Fuse"] = {
-            ["Enable"] = false,
+            ["Enable"] = true,
             ["Fuse Animal"] = {
                 ["La Vacca Saturno Saturnita"] = { "All" },
                 ["Karkerkar Kurkur"] = { "All" },
@@ -163,25 +166,25 @@ getgenv().Config = {
                 ["Tung Tung Tung Sahur"] = { "All" },
                 ["Vulturino Skeletono"] = { "All" },
                 ["Yess my examine"] = { "All" },
+                ["GOAT"] = { "All" },
+                ["Brunito Marsito"] = {"All},
+                ["Chill Puppy"] = {"All},
+                ["Los Trios"] = {"All},
             },
         },
 
         ["Rare Animal Generation"] = "20M",
 
         ["Open Lucky Block"] = {
-            "Admin Lucky Block",
-            "Los Lucky Blocks",
             "Spooky Lucky Block",
             "Festive Lucky Block",
             "Spooky Lucky Block",
         },
 
         ["Buy Lucky Block"] = {
-            "Admin Lucky Block",
             "Secret Lucky Block",
             "Festive Lucky Block",
             "Spooky Lucky Block",
-            "Los Lucky Blocks",
         },
     },
 
