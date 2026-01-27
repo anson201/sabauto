@@ -88,9 +88,9 @@ getgenv().Config = {
             ["Vulturino Skeletono"] = { "All" },
             ["Yess my examine"] = { "All" },
             ["GOAT"] = { "All" },
-            ["Brunito Marsito"] = {"All},
-            ["Chill Puppy"] = {"All},
-            ["Los Trios"] = {"All},
+            ["Brunito Marsito"] = {"All"},
+            ["Chill Puppy"] = {"All"},
+            ["Los Trios"] = {"All"},
         },
 
         ["Auto Fuse"] = {
@@ -167,9 +167,9 @@ getgenv().Config = {
                 ["Vulturino Skeletono"] = { "All" },
                 ["Yess my examine"] = { "All" },
                 ["GOAT"] = { "All" },
-                ["Brunito Marsito"] = {"All},
-                ["Chill Puppy"] = {"All},
-                ["Los Trios"] = {"All},
+                ["Brunito Marsito"] = {"All"},
+                ["Chill Puppy"] = {"All"},
+                ["Los Trios"] = {"All"},
             },
         },
 
