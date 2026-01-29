@@ -25,15 +25,15 @@ getgenv().Settings = {
     DELETE_ALL_EXCEPT = {"Lightning Wyvern", "Surge Dragon", "Dual Shock", "Overcharged Robot"},
     DELETE_PETS_BELOW_POWER = 0,
     USE_INGAME_AUTODELETE = true,
-    AUTO_CRAFT_GOLDEN = {"Lightning Wyvern", "Surge Dragon"},
+    AUTO_CRAFT_GOLDEN = {"Lightning Wyvern"},
     GAMOUNT_TO_CRAFT = 6,
     DELETE_CRAFTED_PETS = false,
     AUTO_CRAFT_ANY_PET = true,
 
-    AUTO_CRAFT_RAINBOW = {"Lightning Wyvern", "Surge Dragon"},
+    AUTO_CRAFT_RAINBOW = {"Lightning Wyvern"},
     RAMOUNT_TO_CRAFT = 5,
 
-     AUTO_CRAFT_ELECTRIC = {"Lightning Wyvern", "Surge Dragon"},
+     AUTO_CRAFT_ELECTRIC = {"Lightning Wyvern"},
      EAMOUNT_TO_CRAFT = 3,
 
     AUTO_UPGRADES = {"Hatch Speed", "Click Multiplier", "Critical Chance", "Golden Luck"},
