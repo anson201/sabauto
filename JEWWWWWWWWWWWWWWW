@@ -39,7 +39,7 @@ getgenv().Settings = {
     AUTO_UPGRADES = {"Hatch Speed", "Click Multiplier", "Critical Chance", "Golden Luck"},
 
     AUTO_BUY_POTIONS = {1, 3, 10},
-    POTIONS_TO_USE = {"Tap Potion I", "Tap Potion II", "Tap Potion III", "Festive Tap I", "Space Tap I", "Rebirth Potion I", "Rebirth Potion II", "Rebirth Potion III", "Space Rebirths I", "Festive Rebirths I", "Space Rebirths II", "Space Rebirths I", "Space Tap II"},
+    POTIONS_TO_USE = {"Tap Potion I", "Tap Potion II", "Tap Potion III", "Rebirth Potion I", "Rebirth Potion II", "Rebirth Potion III"},
     AUTO_RANK_REWARDS = true,
     AUTO_DIG_MINIGAME = false,
     AUTO_MEMORY_MATCH = false,
