@@ -16,7 +16,7 @@ getgenv().Settings = {
     EQUIP_BEST_PETS = true,
     IGNORE_SECRET_WHEN_EQUIPPING = false,
     AUTO_BUY_SPACE_WORLD = true,
-
+    CRAFT_SECRET_PETS = true,
     EGG_TO_HATCH = "Lightning Event",
     AMOUNT_TO_HATCH = nil,
 
