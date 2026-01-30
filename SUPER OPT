@@ -39,7 +39,7 @@ task.spawn(function()
     while true do
         pcall(function()
             settings().Rendering.FrameRateManager = Enum.FramerateManagerMode.Automatic
-            setfpscap(10)
+            setfpscap(5)
         end)
         task.wait(5)
     end
