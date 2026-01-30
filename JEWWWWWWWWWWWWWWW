@@ -19,7 +19,7 @@ getgenv().Settings = {
     CRAFT_SECRET_PETS = true,
     EGG_TO_HATCH = "Lightning Event",
     AMOUNT_TO_HATCH = nil,
-
+    REJOIN_WHEN_BELOW_X_HPM  = 40
     PETS_TO_DELETE = {},
     RARITYS_TO_DELETE = {"Common", "Rare", "Epic", "Legendary", "Mythical"},
     DELETE_ALL_EXCEPT = {"Lightning Wyvern", "Surge Dragon", "Dual Shock", "Overcharged Robot"},
@@ -84,7 +84,7 @@ getgenv().Settings = {
      TOKENS_TO_TRADE = 1000, 
      JOB_ID = "",
 
-     DO_TRADE_PLAZA = false,
+     DO_TRADE_PLAZA = true,
      PETS_TO_LIST = {
          ["pet1"] = 9999,
          ["pet2"] = 9999
