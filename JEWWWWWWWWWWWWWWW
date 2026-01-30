@@ -87,7 +87,7 @@ getgenv().Settings = {
      DO_TRADE_PLAZA = true,
      PETS_TO_LIST = {
          ["pet1"] = 9999,
-         ["pet2"] = 9999
+         ["pet2"] = 9999,
     },
      PREFER_SECRET_PLAZA = false,
 }
