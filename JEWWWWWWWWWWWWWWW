@@ -79,7 +79,7 @@ getgenv().Settings = {
     HIDE_STATUS_AND_STATS_UI = false,
 
      JOIN_MAIN_ON_PLAZA = true,
-     MAIN_ACCOUNT = {"Anson201SellAcc"}
+     MAIN_ACCOUNT = "Anson201SellAcc",
      PETS_TO_TRADE = {"Dual Shock", "Overcharged Robot","Surge Dragon"},
      MAX_SERVER_PLAYERS = 18,
      TOKENS_TO_TRADE = 1000, 
