@@ -39,7 +39,7 @@ getgenv().Settings = {
     AUTO_UPGRADES = {"Hatch Speed", "Click Multiplier", "Critical Chance", "Golden Luck"},
 
     AUTO_BUY_POTIONS = {1, 3, 10},
-    POTIONS_TO_USE = {"Tap Potion I", "Tap Potion II", "Tap Potion III", "Rebirth Potion I", "Rebirth Potion II", "Rebirth Potion III","Space Rebirths I","Space Rebirths II","Space Tap I"},
+    POTIONS_TO_USE = {"Tap Potion I", "Tap Potion II", "Tap Potion III", "Rebirth Potion I", "Rebirth Potion II", "Rebirth Potion III","Space Rebirths I","Space Rebirths II","Space Tap I", "Space Luck I" ,"Space Luck II"},
     AUTO_RANK_REWARDS = true,
     AUTO_DIG_MINIGAME = false,
     AUTO_MEMORY_MATCH = false,
@@ -54,28 +54,21 @@ getgenv().Settings = {
     DO_EVENT_EGGS = true,
     RARITIES_TO_DO = {},
 
-
     FARM_ENCHANT_SHARDS = false,
     ONLY_FARM_WHEN_SNOWMAN_ELECTRIFIED = false,
     FARM_UNTIL_PETS_ENCHANTED = false,
-
     TARGET_ENCHANTS = {"Secret Hunter"},
    FALLBACK_ENCHANT = {"Rainbow Hunter", "Golden Hunter"}, -- applies when u have 3 secret hunter pets
     ENCHANT_WHEN_TEAM_HITS_X_POWER = 0,
     EQUIP_ONLY_SET_ENCHANT_PET = true,
-
     AUTO_REBIRTH = true,
     AUTO_REBIRTH_BUTTONS = true,
-    REBIRTH_INTERVAL = 10,
+    REBIRTH_INTERVAL = 60,
     AUTO_FRIEND_ALL = true,
-
     HATCH_WEBHOOK_URL = "https://discord.com/api/webhooks/1465492909800554661/0Av-O0b9cOjrYTLT_S6xa4LJmwPxFJamoSfniR4SRJwgoSties7lQm94FVgQUR2OBCyK",
     DISCORD_USER_ID = "1147664930984693840",
-
     BUY_SELECTED_GAMPASSES_WITH_TOKENS = {"faster hatch","octo hatch", "magic eggs", "secret hunter"},
-
     AUTO_BUY_STELLAR_OVERDRIVE = true,
-
     HIDE_STATUS_AND_STATS_UI = false,
 
      MAIN_ACCOUNT = "",
