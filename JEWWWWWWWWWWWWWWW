@@ -8,7 +8,7 @@ getgenv().Settings = {
         ["Critical Chance"] = true,
         ["Golden Luck"] = true,
     },
-    EGG_TO_GRIND_TO = "Lightning Event",
+    EGG_TO_GRIND_TO = "Lunar Egg",
     REQUIRE_STARTER_UPGRADES = true,
 
     AUTO_CLICK = true,
@@ -17,20 +17,20 @@ getgenv().Settings = {
     IGNORE_SECRET_WHEN_EQUIPPING = false,
     AUTO_BUY_SPACE_WORLD = true,
     CRAFT_SECRET_PETS = true,
-    EGG_TO_HATCH = "Lightning Event",
+    EGG_TO_HATCH = "Lunar Egg",
     AMOUNT_TO_HATCH = nil,
     REJOIN_WHEN_BELOW_X_HPM  = 40,
     PETS_TO_DELETE = {},
     RARITYS_TO_DELETE = {"Common", "Rare", "Epic", "Legendary", "Mythical"},
-    DELETE_ALL_EXCEPT = {"Lightning Wyvern", "Surge Dragon", "Dual Shock", "Overcharged Robot","Starlight Deity", "Moon Warden","Neon Cat"},
+    DELETE_ALL_EXCEPT = {"Lightning Wyvern","Orbital Demigod", "Surge Dragon", "Dual Shock", "Overcharged Robot","Starlight Deity", "Moon Warden","Neon Cat"},
     DELETE_PETS_BELOW_POWER = 0,
     USE_INGAME_AUTODELETE = true,
     AUTO_CRAFT_GOLDEN = {"Orbital Demigod"},
     GAMOUNT_TO_CRAFT = 6,
     DELETE_CRAFTED_PETS = false,
     AUTO_CRAFT_ANY_PET = true,
-	USE_TOTEM = {"Totem Of Hatch Speed" , "Totem Of Secret Luck" , "Totem Of Clicks" , "Totem of Luck"}
-    GEM_MERCHANT_ITEMS_TO_BUY = {"Totem Of Hatch Speed" , "Totem Of Secret Luck" , "Totem Of Clicks" , "Totem of Luck"}
+	USE_TOTEM = {"Totem Of Hatch Speed" , "Totem Of Secret Luck" , "Totem Of Clicks" , "Totem of Luck"},
+    GEM_MERCHANT_ITEMS_TO_BUY = {"Totem Of Hatch Speed" , "Totem Of Secret Luck" , "Totem Of Clicks" , "Totem of Luck"},
 
     AUTO_CRAFT_RAINBOW = {"Orbital Demigod"},
     RAMOUNT_TO_CRAFT = 5,
@@ -78,7 +78,7 @@ getgenv().Settings = {
 
     AUTO_BUY_STELLAR_OVERDRIVE = true,
 
-    HIDE_STATUS_AND_STATS_UI = false,
+    HIDE_STATUS_AND_STATS_UI = true,
 
      MAIN_ACCOUNT = "",
      PETS_TO_TRADE = {"Dual Shock", "Overcharged Robot","Surge Dragon"},
