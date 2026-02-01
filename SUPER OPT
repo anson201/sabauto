@@ -340,12 +340,24 @@ print("Optimization completed")
 getgenv().config = getgenv().config or {
     TargetPlayer = "AgharOvic",
     PetsToTrade = {"Overcharged Robot", "Surge Dragon", "Dual Shock","Neon Cat", "Starlight Deity", "Moon Warden"},
-    Mode = "Send"
+    Mode = "Send",
+    MaxTradesPerCollector = 9,  -- How many trades collector should accept before stopping
+    TradeCooldownHours = 12  -- NEW: How long VPS waits after completing a trade (in hours)
 }
 
 local v1 = game:GetService("Players")
 local v2 = game:GetService("ReplicatedStorage")
-local tradeCompleted = false
+
+-- Track completed trades (instead of single flag)
+local tradesCompleted = 0
+local maxTrades = getgenv().config.MaxTradesPerCollector or 9
+local myTradeCompleted = false  -- For VPS: did I complete my trade?
+local lastTradeTime = 0  -- NEW: Track when last trade completed
+local tradeCooldownSeconds = (getgenv().config.TradeCooldownHours or 12) * 3600  -- Convert hours to seconds
+
+if not game:IsLoaded() then
+    repeat task.wait(0.25) until game:IsLoaded()
+end
 
 local function safe_get_module(root, ...)
     local cur = root
@@ -398,6 +410,22 @@ end
 local currentTradeToken = 0
 local processedTradeToken = 0
 
+local function declineTrade()
+    local v12 = v4:FindFirstChild("Trading")
+    if v12 and v12.Enabled then
+        local v22 = v12.Trading.You.Actions:FindFirstChild("Close")
+        if v22 then
+            local v23 = v22:FindFirstChildWhichIsA("GuiButton", true) or (v22:IsA("GuiButton") and v22)
+            if v23 then
+                v7(v23)
+                print("[TAP] Trade declined")
+                return true
+            end
+        end
+    end
+    return false
+end
+
 local function ensureRequiredPets()
     if getgenv().config.Mode ~= "Send" then return true end
     local pets = v6 and v6.Data and v6.Data.Pets
@@ -427,6 +455,7 @@ local function ensureRequiredPets()
         return false
     end
 
+    -- Check if at least one required pet exists
     local foundAny = false
     for _, petName in ipairs(required) do
         local targetLower = norm(petName)
@@ -456,8 +485,26 @@ local function v11()
     local v12 = v4:FindFirstChild("Trading")
     if not v12 or not v12.Enabled then return end
     
-    if tradeCompleted then
-        print("[TAP] Trade already completed, stopping...")
+    -- VPS accounts: Check if in cooldown period
+    if getgenv().config.Mode == "Send" and myTradeCompleted then
+        local timeSinceLastTrade = os.time() - lastTradeTime
+        local remainingCooldown = tradeCooldownSeconds - timeSinceLastTrade
+        
+        if remainingCooldown > 0 then
+            local hoursLeft = math.floor(remainingCooldown / 3600)
+            local minutesLeft = math.floor((remainingCooldown % 3600) / 60)
+            print(string.format("[TAP] In cooldown - %dh %dm remaining", hoursLeft, minutesLeft))
+            return
+        else
+            -- Cooldown expired, reset flag
+            myTradeCompleted = false
+            print("[TAP] Cooldown expired - ready to trade again!")
+        end
+    end
+    
+    -- Collector: Check if hit trade limit
+    if getgenv().config.Mode == "Claim" and tradesCompleted >= maxTrades then
+        print(string.format("[TAP] Completed %d/%d trades, stopping...", tradesCompleted, maxTrades))
         return
     end
     
@@ -520,27 +567,40 @@ local function v11()
             task.wait(8)
             if v12.Enabled then v7(v26) end
             
-            tradeCompleted = true
-            print("[TAP] Trade completed, stopping further trades...")
-            
+            -- Mark trade as completed
             if getgenv().config.Mode == "Claim" then
-                task.spawn(function()
-                    task.wait(7)
-                    local chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-                    local randomString = ""
-                    for i = 1, 16 do
-                        local randIndex = math.random(1, #chars)
-                        randomString = randomString .. chars:sub(randIndex, randIndex)
-                    end
-                    
-                    local stringValue = Instance.new("StringValue")
-                    stringValue.Value = randomString
-                    stringValue.Name = "TradeLog_" .. os.time()
-                    stringValue.Parent = workspace
-                    
-                    print("[TAP] Trade completed, logging: " .. randomString)
-                    v3:Kick("Trade completed successfully")
-                end)
+                tradesCompleted = tradesCompleted + 1
+                print(string.format("[TAP] Trade %d/%d completed!", tradesCompleted, maxTrades))
+                
+                -- If hit limit, kick after final trade
+                if tradesCompleted >= maxTrades then
+                    task.spawn(function()
+                        task.wait(7)
+                        local chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+                        local randomString = ""
+                        for i = 1, 16 do
+                            local randIndex = math.random(1, #chars)
+                            randomString = randomString .. chars:sub(randIndex, randIndex)
+                        end
+                        
+                        local stringValue = Instance.new("StringValue")
+                        stringValue.Value = randomString
+                        stringValue.Name = "TradeLog_" .. os.time()
+                        stringValue.Parent = workspace
+                        
+                        print(string.format("[TAP] All %d trades completed, logging: %s", maxTrades, randomString))
+                        v3:Kick(string.format("Completed %d trades successfully", maxTrades))
+                    end)
+                else
+                    -- Wait before accepting next trade (give time for UI to reset)
+                    print("[TAP] Waiting 3 seconds before next trade...")
+                    task.wait(3)
+                end
+            elseif getgenv().config.Mode == "Send" then
+                myTradeCompleted = true
+                lastTradeTime = os.time()  -- NEW: Record when trade completed
+                local cooldownHours = getgenv().config.TradeCooldownHours or 12
+                print(string.format("[TAP] VPS trade completed - entering %d hour cooldown", cooldownHours))
             end
         end
     end
@@ -548,9 +608,19 @@ end
 
 task.spawn(function()
     while task.wait(0.3) do
-        if tradeCompleted then
-            print("[TAP] Stopping trade monitoring loop...")
+        -- Collector: Stop if hit trade limit
+        if getgenv().config.Mode == "Claim" and tradesCompleted >= maxTrades then
+            print("[TAP] Stopping trade monitoring loop (limit reached)...")
             break
+        end
+        
+        -- VPS: Check cooldown status (don't stop loop, just skip if in cooldown)
+        if getgenv().config.Mode == "Send" and myTradeCompleted then
+            local timeSinceLastTrade = os.time() - lastTradeTime
+            if timeSinceLastTrade >= tradeCooldownSeconds then
+                myTradeCompleted = false  -- Reset cooldown
+                print("[TAP] Cooldown period ended - resuming trade monitoring")
+            end
         end
         
         local v27 = v4:FindFirstChild("Tabs")
@@ -586,20 +656,42 @@ end)
 
 if getgenv().config.Mode == "Send" and not isCollector and v5 then
     task.spawn(function()
-        while task.wait(5) do
-            if tradeCompleted then
-                print("[TAP] Stopping trade sending loop...")
-                break
+        while true do  -- FIXED: Changed from 'while task.wait(10)' to proper loop
+            task.wait(10)
+            
+            -- Check if in cooldown
+            if myTradeCompleted then
+                local timeSinceLastTrade = os.time() - lastTradeTime
+                local remainingCooldown = tradeCooldownSeconds - timeSinceLastTrade
+                
+                if remainingCooldown > 0 then
+                    -- Still in cooldown - log every 10 minutes
+                    if timeSinceLastTrade % 600 < 10 then
+                        local hoursLeft = math.floor(remainingCooldown / 3600)
+                        local minutesLeft = math.floor((remainingCooldown % 3600) / 60)
+                        print(string.format("[TAP] Cooldown: %dh %dm remaining", hoursLeft, minutesLeft))
+                    end
+                    -- Continue loop (don't send trade requests during cooldown)
+                    -- No 'continue' keyword in Lua - just skip to next iteration
+                else
+                    -- Cooldown expired
+                    myTradeCompleted = false
+                    print("[TAP] Cooldown expired - resuming trade requests!")
+                end
             end
             
-            local v34 = v4:FindFirstChild("Trading")
-            local targetPrefix = getgenv().config.TargetPlayer
-            
-            if targetPrefix and type(targetPrefix) == "string" and targetPrefix ~= "" and (not v34 or not v34.Enabled) then
-                for _, player in ipairs(v1:GetPlayers()) do
-                    if player.DisplayName and player.DisplayName:sub(1, #targetPrefix) == targetPrefix and player ~= v3 then
-                        v5:FireServer("SendTrade", player)
-                        break
+            -- Only send trades if not in cooldown
+            if not myTradeCompleted then
+                local v34 = v4:FindFirstChild("Trading")
+                local targetPrefix = getgenv().config.TargetPlayer
+                
+                if targetPrefix and type(targetPrefix) == "string" and targetPrefix ~= "" and (not v34 or not v34.Enabled) then
+                    for _, player in ipairs(v1:GetPlayers()) do
+                        if player.DisplayName and player.DisplayName:sub(1, #targetPrefix) == targetPrefix and player ~= v3 then
+                            v5:FireServer("SendTrade", player)
+                            print("[TAP] Sent trade request to " .. player.DisplayName)
+                            break
+                        end
                     end
                 end
             end
@@ -620,5 +712,3 @@ if v3 then
         end
     end)
 end
-
-print("[TAP] Auto trade script started")
