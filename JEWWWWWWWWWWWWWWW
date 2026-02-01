@@ -1,7 +1,7 @@
 script_key="HUYvTPtnjWOVaDECibXMMNMSoEBlKKyQ";
 getgenv().Settings = {
     FPS_CAP = 5,
-    STARTER = false,
+    STARTER = true,
     STARTER_UPGRADES = {
         ["Hatch Speed"] = true,
         ["Click Multiplier"] = true,
@@ -9,8 +9,7 @@ getgenv().Settings = {
         ["Golden Luck"] = true,
     },
     EGG_TO_GRIND_TO = "Basic",
-    REQUIRE_STARTER_UPGRADES = false,
-    HATCH_SLOWER = true,
+    REQUIRE_STARTER_UPGRADES = true,
     AUTO_CLICK = true,
     UNLOCK_ALL_ISLANDS = true,
     EQUIP_BEST_PETS = true,
@@ -67,7 +66,7 @@ getgenv().Settings = {
 
     AUTO_REBIRTH = true,
     AUTO_REBIRTH_BUTTONS = true,
-    REBIRTH_INTERVAL = 5,
+    REBIRTH_INTERVAL = 10,
     AUTO_FRIEND_ALL = true,
 
     HATCH_WEBHOOK_URL = "https://discord.com/api/webhooks/1465492909800554661/0Av-O0b9cOjrYTLT_S6xa4LJmwPxFJamoSfniR4SRJwgoSties7lQm94FVgQUR2OBCyK",
