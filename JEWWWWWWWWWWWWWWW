@@ -68,7 +68,7 @@ getgenv().Settings = {
 
     AUTO_REBIRTH = true,
     AUTO_REBIRTH_BUTTONS = true,
-    REBIRTH_INTERVAL = 10,
+    REBIRTH_INTERVAL = 5,
     AUTO_FRIEND_ALL = true,
 
     HATCH_WEBHOOK_URL = "https://discord.com/api/webhooks/1465492909800554661/0Av-O0b9cOjrYTLT_S6xa4LJmwPxFJamoSfniR4SRJwgoSties7lQm94FVgQUR2OBCyK",
@@ -78,7 +78,7 @@ getgenv().Settings = {
 
     AUTO_BUY_STELLAR_OVERDRIVE = true,
 
-    HIDE_STATUS_AND_STATS_UI = true,
+    HIDE_STATUS_AND_STATS_UI = false,
 
      MAIN_ACCOUNT = "",
      PETS_TO_TRADE = {"Dual Shock", "Overcharged Robot","Surge Dragon"},
