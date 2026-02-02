@@ -1,7 +1,7 @@
 script_key="HUYvTPtnjWOVaDECibXMMNMSoEBlKKyQ";
 getgenv().Settings = {
     FPS_CAP = 5,
-    STARTER = true,
+    STARTER = false,
     STARTER_UPGRADES = {
         ["Hatch Speed"] = true,
         ["Click Multiplier"] = true,
