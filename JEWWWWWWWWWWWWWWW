@@ -25,6 +25,7 @@ getgenv().Settings = {
     USE_INGAME_AUTODELETE = true,
     AUTO_CRAFT_GOLDEN = {"Orbital Demigod"},
     GAMOUNT_TO_CRAFT = 6,
+	REJOIN_WHEN_BELOW_X_HPM = 40,
     DELETE_CRAFTED_PETS = false,
     AUTO_CRAFT_ANY_PET = true,
 	USE_TOTEM = {"Totem Of Hatch Speed" , "Totem Of Secret Luck" , "Totem Of Clicks" , "Totem of Luck"},
