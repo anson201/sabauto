@@ -34,9 +34,6 @@ getgenv().Settings = {
     AUTO_CRAFT_RAINBOW = {"Prismatic Luckyblock"},
     RAMOUNT_TO_CRAFT = 5,
 
-     AUTO_CRAFT_ELECTRIC = {"Prismatic Luckyblock"},
-     EAMOUNT_TO_CRAFT = 3,
-
     AUTO_UPGRADES = {"Hatch Speed", "Click Multiplier", "Critical Chance", "Golden Luck"},
 
     AUTO_BUY_POTIONS = {1, 3, 10},
