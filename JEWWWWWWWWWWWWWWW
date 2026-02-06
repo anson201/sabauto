@@ -47,7 +47,6 @@ getgenv().Settings = {
     AUTO_CLAIM_QUESTS = true,
     AUTO_DO_QUESTS = false,
     DO_EGG_INDEX = {},
-	HATCH_FOR_KEY_PETS = {"Legendary", "Mythical"},
     CRAFT_FOR_INDEX = false,
     INDEX_VARIANT_TODO = {},
     DO_EVENT_EGGS = true,
