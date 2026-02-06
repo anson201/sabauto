@@ -54,7 +54,6 @@ getgenv().Settings = {
     RARITIES_TO_DO = {},
     AUTO_CRAFT_KEYS = {"Mythical", "Legendary"},
     AUTO_USE_KEYS = true,
-    AUTO_CLAIM_ESSENCE = true,
     FARM_ENCHANT_SHARDS = false,
     ONLY_FARM_WHEN_SNOWMAN_ELECTRIFIED = false,
     FARM_UNTIL_PETS_ENCHANTED = false,
