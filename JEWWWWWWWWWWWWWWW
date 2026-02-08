@@ -5,7 +5,7 @@ getgenv().Config = {
         ["Server Type"] = "Private (Clone)",
 
         -- Private Server config
-        ["Collect Cash Cap"] = "500B",
+        ["Collect Cash Cap"] = "1000B",
 
         -- Public Server config
         ["Max Auctioning Multiplier"] = 10,
@@ -92,6 +92,13 @@ getgenv().Config = {
             ["Chill Puppy"] = {"All"},
             ["Los Trios"] = {"All"},
 	    	["Mi Gatitos"] = {"All"},
+	        ["Luv Luv Luv"] = {"All"},
+	    	["Karkerheart Luvkur"] = {"All"},
+	    	["Love Love Love Sahur"] = {"All"},
+	    	["Cupid Hotspot"] = {"All"},
+	    	["Noo my Heart"] = {"All"},
+	    	["Chicleteira Cupideira"] = {"All"},
+			["Cupid Cupid Sahur"] = {"All"},
         },
 
         ["Auto Fuse"] = {
@@ -172,18 +179,27 @@ getgenv().Config = {
                 ["Chill Puppy"] = {"All"},
                 ["Los Trios"] = {"All"},
 	    		["Mi Gatitos"] = {"All"},
+	        	["Luv Luv Luv"] = {"All"},
+	    		["Karkerheart Luvkur"] = {"All"},
+	    		["Love Love Love Sahur"] = {"All"},
+	    		["Cupid Hotspot"] = {"All"},
+	    		["Noo my Heart"] = {"All"},
+	    		["Chicleteira Cupideira"] = {"All"},
+				["Cupid Cupid Sahur"] = {"All"},
             },
         },
 
         ["Rare Animal Generation"] = "20M",
 
         ["Open Lucky Block"] = {
+			"Heart Lucky Block",
             "Spooky Lucky Block",
             "Festive Lucky Block",
             "Spooky Lucky Block",
         },
 
         ["Buy Lucky Block"] = {
+			"Heart Lucky Block",
             "Secret Lucky Block",
             "Festive Lucky Block",
             "Spooky Lucky Block",
