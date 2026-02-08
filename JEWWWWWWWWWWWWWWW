@@ -91,7 +91,7 @@ getgenv().Config = {
             ["Brunito Marsito"] = {"All"},
             ["Chill Puppy"] = {"All"},
             ["Los Trios"] = {"All"},
-	    ["Los Mi Gatitos"] = {"All"},
+	    	["Mi Gatitos"] = {"All"},
         },
 
         ["Auto Fuse"] = {
@@ -171,6 +171,7 @@ getgenv().Config = {
                 ["Brunito Marsito"] = {"All"},
                 ["Chill Puppy"] = {"All"},
                 ["Los Trios"] = {"All"},
+	    		["Mi Gatitos"] = {"All"},
             },
         },
 
