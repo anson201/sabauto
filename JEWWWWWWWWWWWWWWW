@@ -95,7 +95,7 @@ getgenv().Config = {
         },
 
         ["Auto Fuse"] = {
-            ["Enable"] = false,
+            ["Enable"] = true,
             ["Fuse Animal"] = {
                 ["La Vacca Saturno Saturnita"] = { "All" },
                 ["Karkerkar Kurkur"] = { "All" },
