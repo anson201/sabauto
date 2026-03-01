@@ -99,10 +99,13 @@ getgenv().Config = {
 	    	["Noo my Heart"] = {"All"},
 	    	["Chicleteira Cupideira"] = {"All"},
 			["Cupid Cupid Sahur"] = {"All"},
+            ["Fishboard"] = {"All"},
+            ["Nuclearo Dinossauro"] = {"All"},
+            ["DJ Panda"] = {"All"},
         },
 
         ["Auto Fuse"] = {
-            ["Enable"] = true,
+            ["Enable"] = false,
             ["Fuse Animal"] = {
                 ["La Vacca Saturno Saturnita"] = { "All" },
                 ["Karkerkar Kurkur"] = { "All" },
@@ -186,16 +189,24 @@ getgenv().Config = {
 	    		["Noo my Heart"] = {"All"},
 	    		["Chicleteira Cupideira"] = {"All"},
 				["Cupid Cupid Sahur"] = {"All"},
+                ["Fishboard"] = {"All"},
+                ["Nuclearo Dinossauro"] = {"All"},
+                ["DJ Panda"] = {"All"},
             },
         },
 
         ["Rare Animal Generation"] = "20M",
 
         ["Open Lucky Block"] = {
-			"Heart Lucky Block",
             "Spooky Lucky Block",
             "Festive Lucky Block",
             "Spooky Lucky Block",
+            "Heart Lucky Block",
+            "Taco Lucky Block",
+            "Los Lucky Blocks",
+            "Admin Lucky Block",
+            "Los Taco Blocks",
+
         },
 
         ["Buy Lucky Block"] = {
@@ -203,6 +214,11 @@ getgenv().Config = {
             "Secret Lucky Block",
             "Festive Lucky Block",
             "Spooky Lucky Block",
+            "Taco Lucky Block",
+            "Los Lucky Blocks",
+            "Admin Lucky Block",
+            "Los Taco Blocks",
+
         },
     },
 
