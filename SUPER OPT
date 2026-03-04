@@ -7,24 +7,7 @@ pcall(function()
 end)
 
 repeat task.wait(0.3) until game:IsLoaded()
-task.wait(0.5)
 
-local Players = game:GetService("Players")
-local Workspace = game:GetService("Workspace")
-local RunService = game:GetService("RunService")
-local Lighting = game:GetService("Lighting")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local StarterGui = game:GetService("StarterGui")
-local CollectionService = game:GetService("CollectionService")
-local lp = Players.LocalPlayer
-
-if not lp then
-    warn("LocalPlayer not found!")
-    return
-end
-
-
--- FPS Limiter - Set to 6 FPS every 5 seconds
 task.spawn(function()
     while true do
         pcall(function()
@@ -35,9 +18,4 @@ task.spawn(function()
     end
 end)
 
-pcall(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/super-boost-fps/sucvat/main/ditfps-bf.lua"))()
-end)
-
 print("Optimization completed")
-
