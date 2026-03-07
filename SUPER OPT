@@ -11,7 +11,6 @@ repeat task.wait(0.3) until game:IsLoaded()
 task.spawn(function()
     while true do
         pcall(function()
-            settings().Rendering.FrameRateManager = Enum.FramerateManagerMode.Automatic
             setfpscap(6)
         end)
         task.wait(5)
