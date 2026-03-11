@@ -196,7 +196,7 @@ getgenv().Config = {
             },
         },
 
-        ["Rare Animal Generation"] = "20M",
+        ["Rare Animal Generation"] = "49M",
 
         ["Open Lucky Block"] = {
             "Spooky Lucky Block",
