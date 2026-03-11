@@ -102,6 +102,7 @@ getgenv().Config = {
             ["Fishboard"] = {"All"},
             ["Nuclearo Dinossauro"] = {"All"},
             ["DJ Panda"] = {"All"},
+			["Money Money Puggy"] = {"All"},
         },
 
         ["Auto Fuse"] = {
